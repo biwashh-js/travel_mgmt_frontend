@@ -1,0 +1,8 @@
+@import "tailwindcss";
+#root {
+  max-width: 1440px;
+  height:100vh;
+  min-height:100vh;
+  font-family: 'poppins';
+  margin: 0 auto;
+}
