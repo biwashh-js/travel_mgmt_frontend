@@ -1,34 +1,33 @@
 
+import { yupResolver } from "@hookform/resolvers/yup";
 import type { ILoginData } from "../../interface/interface.auth";
 import Button from "../common/buttons/button";
 import Input from "../common/inputs/input";
 import { useForm } from "react-hook-form";
+import * as yup from "yup"
+
+
+const loginSchema = yup.object({
+    email:yup.string().required('email is required.').email('invalid email format'),
+    password:yup.string().required('password is required.')
+})
 
 const LoginForm = () => {
 
 
-  
-  // const [formData, setFormData] = useState({ 
-  //   email: '', 
-  //   password:''
-  // }) 
-  
-  const {register,handleSubmit} = useForm({
+    
+  const {register,handleSubmit,formState:{errors}} = useForm({
     defaultValues:{
       email:'',
       password:''
 
-    }
+    },
+    resolver:yupResolver(loginSchema)
 
   })
-  // const onChange = (e: React.ChangeEvent<HTMLInputElement>) => { 
-  //   console.log(`input changes`, e.target.name, e.target.value)
-  //   const name = e.target.name 
-  //   const value = e.target.value 
+ 
+  console.log(errors)
 
-  //   setFormData({ ...formData, [name]: value})
-  // } 
-  
   const onSubmit = (data:ILoginData) => { 
      console.log("form Submitted",data)
  }
@@ -47,6 +46,7 @@ const LoginForm = () => {
             key="email_input"
             required ={true}
             name="email"
+            error = {errors.email?.message}
             register={register}
            
           />
@@ -60,6 +60,7 @@ const LoginForm = () => {
             key="password_input"
             required = {true}
             name='password'
+             error = {errors.password?.message}
             register={register}
 
           />

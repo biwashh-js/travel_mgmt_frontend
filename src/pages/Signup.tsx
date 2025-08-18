@@ -2,9 +2,9 @@ import SignupForm from "../components/forms/signup.form";
 
 const Signup = () => {
   return (
-    <main className="h-full w-full flex justify-center items-center tracking-wider">
+    <main className="min-h-full w-full flex justify-center items-center tracking-wider">
       {/* form */}
-      <div className="border border-blue-400 p-6 min-w-[500px] min-h-[500px] rounded-md shadow-gray-300">
+      <div className="border border-blue-400 p-6 w-[min(500px,100%)] min-h-[500px] rounded-md shadow-gray-300">
         <h1 className="text-2xl font-bold text-blue-600 text-center">
           Register
         </h1>

@@ -2,8 +2,8 @@ import LoginForm from "../components/forms/login.form";
 
 const Login = () => {
   return (
-    <main className="h-full w-full flex justify-center items-center tracking-wider ">
-      <div className="border border-blue-400 p-6 min-w-[350px] min-h-[400px] rounded-md shadow-gray-300 ">
+    <main className="min-h-full w-full flex justify-center items-center tracking-wider px-3">
+      <div className="border border-blue-400 p-6 w-[min(350px,100%)] min-h-[400px] rounded-md shadow-gray-300 ">
         <h1 className="text-2xl font-bold text-blue-600 text-center ">Login</h1>
 
           {/* form */}

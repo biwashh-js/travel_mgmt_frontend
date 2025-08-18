@@ -39,7 +39,7 @@ const SignupForm = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col">
           {/* firstName */}
-          <div className="flex flex-row justify-between">
+          <div className="grid md:grid-cols-2 gap-4">
             <Input
               label="First Name"
               id="firstName"
