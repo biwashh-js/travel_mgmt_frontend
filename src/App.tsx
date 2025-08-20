@@ -1,4 +1,3 @@
-import { HiH1 } from "react-icons/hi2";
 import "./App.css";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
