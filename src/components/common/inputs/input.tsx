@@ -28,7 +28,7 @@ const Input:React.FC<IProps>= ({label,id,placeholder='start typing here..',type=
             name={name}
             
           />
-          <p className="h-1 text-xs text-red-500">{error? error : ''}</p>
+          <p className="h-1 text-xs mb-3 text-red-500">{error? error : ''}</p>
             </div>
   )
 }

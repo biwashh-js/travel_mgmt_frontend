@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import LoginForm from "../components/forms/login.form";
 
 const Login = () => {
@@ -13,10 +14,12 @@ const Login = () => {
           {/* link to signup page */}
           <div className="flex items-center justify-center text-[12px] mt-5">
             <p>
-              Don&apos;t have an account ? 
+              Don&apos;t have an account ? {" "}
+              <Link to ={'/sign-up'}>
               <span className="text-blue-700">
-                <a href="Signup.tsx">Sign Up</a>
+                Sign Up
               </span>
+              </Link>
             </p>
         </div>
       </div>

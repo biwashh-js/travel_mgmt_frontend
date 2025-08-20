@@ -3,40 +3,47 @@ import Button from "../common/buttons/button";
 import { GenderSelect } from "../common/inputs/select-input";
 import { useForm } from "react-hook-form";
 import type { IRegisterData } from "../../interface/interface.auth";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+
+
+const signupSchema = yup.object({
+      email:yup.string().required('email is required.').email('invalid email format'),
+      password:yup.string().required('password is required.'),
+      confirm_password:yup.string().required('password is required'),
+      firstName: yup.string().required("First name is required"),
+      lastName: yup.string().required("Last name is required"),
+      gender: yup.string().required("Gender is required"),
+      phone: yup.string()
+})
 
 const SignupForm = () => {
-  
-     
-     const {register,handleSubmit} = useForm({
-       defaultValues:{
-         email:'',
-         password:'',
-         confirm_password:'',
-         firstName:'',
-         lastName:'',
-         gender:'',
-         phone:'',
-   
-
-
-
-         
-       }
-   
-     })
+  const { register, handleSubmit,formState:{errors} } = useForm({
+    defaultValues: {
+      email:'',
+      password:'',
+      confirm_password:'',
+      firstName:'',
+      lastName:'',
+      gender:'',
+      phone: '',
+    },
+     resolver:yupResolver(signupSchema)
     
-    // const onChange = (e: React.ChangeEvent<HTMLInputElement>) => { 
-    //   console.log(`input changes`, e.target.name, e.target.value)
-    //   const name = e.target.name 
-    //   const value = e.target.value 
-  
-    //   setFormData({ ...formData, [name]: value})
-    // } 
-    
-    const onSubmit = (data:IRegisterData) => { 
-     
-       console.log("form Submitted",data)
-   }
+  });
+
+  // const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   console.log(`input changes`, e.target.name, e.target.value)
+  //   const name = e.target.name
+  //   const value = e.target.value
+
+  //   setFormData({ ...formData, [name]: value})
+  // }
+
+  const onSubmit = (data: IRegisterData) => {
+    console.log("form Submitted", data);
+  };
 
   return (
     <div>
@@ -52,7 +59,8 @@ const SignupForm = () => {
               key="name_input"
               name="firstName"
               register={register}
-              required 
+               error = {errors.firstName?.message}
+              required
             />
             {/* last name */}
             <Input
@@ -63,6 +71,7 @@ const SignupForm = () => {
               key="name_input"
               name="lastName"
               register={register}
+               error = {errors.lastName?.message}
               required
             />
           </div>
@@ -75,6 +84,7 @@ const SignupForm = () => {
             key="email_input"
             name="email"
             register={register}
+             error = {errors.email?.message}
             required
           />
 
@@ -87,10 +97,11 @@ const SignupForm = () => {
             key="password_input"
             name="password"
             register={register}
+             error = {errors.password?.message}
             required
           />
 
-            <Input
+          <Input
             label="Confirm Password"
             id="confirm_password"
             type="password"
@@ -98,6 +109,7 @@ const SignupForm = () => {
             key="confirm_password_input"
             name="confrim_password"
             register={register}
+             error = {errors.confirm_password?.message}
             required
           />
 
@@ -111,15 +123,16 @@ const SignupForm = () => {
               key="phone_input"
               name="phone"
               register={register}
+               error = {errors.phone?.message}
               required={false}
             />
             <GenderSelect
-            label="Gender"
-            id="gender"
-            name="gender"
-            register={register}/>
-             
-            
+              label="Gender"
+              id="gender"
+              name="gender"
+              register={register}
+          
+            />
           </div>
           {/* button */}
           <div className="flex flex-col items-center justify-center">
