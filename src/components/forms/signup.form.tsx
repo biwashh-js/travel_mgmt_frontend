@@ -15,8 +15,12 @@ const SignupForm = () => {
          firstName:'',
          lastName:'',
          gender:'',
-         phone:''
+         phone:'',
    
+
+
+
+         
        }
    
      })
