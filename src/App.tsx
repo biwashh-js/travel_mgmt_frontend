@@ -12,9 +12,11 @@ const App = () => {
     <main className="h-full    w-full">
       <BrowserRouter>
         <Routes>
-          {/* <Route path='/' element={<h1>Home Page</h1>}/> */}
-          <Route path="/" element={<Login/>} />
+          <Route path='/' element={<div>Home Page</div>}/>
+          <Route path="/login" element={<Login/>} />
           <Route path='/sign-up' element={<Signup/>} />
+          <Route path='*' element={<div>Page not found</div>}/>
+
         </Routes>
       </BrowserRouter>
     </main>
