@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 
@@ -10,13 +10,13 @@ import Signup from "./pages/signup";
 const App = () => {
   return (
     <main className="h-full    w-full">
-      <Router>
+      <BrowserRouter>
         <Routes>
           <Route path='/' element={<h1>Home Page</h1>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/sign-up' element={<Signup/>}/>
+          <Route path="/login" element={<Login/>} />
+          <Route path='/sign-up' element={<Signup/>} />
         </Routes>
-      </Router>
+      </BrowserRouter>
     </main>
   );
 };
