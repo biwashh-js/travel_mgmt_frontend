@@ -13,7 +13,6 @@ const App = () => {
           <Route path ='/sign-up' element={<Signup/>}/>
         </Routes>
       </Router>
-
     </main>
   );
 };
