@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 import Home from "./pages/home";
+import NotFound from "./pages/pageNotFound";
 
 
 
@@ -16,7 +17,7 @@ const App = () => {
           <Route path='/' element={<Home/>}/>
           <Route path="/login" element={<Login/>} />
           <Route path='/sign-up' element={<Signup/>} />
-          <Route path='*' element={<div>Page not found</div>}/>
+          <Route path='*' element={<NotFound/>}/>
 
         </Routes>
       </BrowserRouter>
