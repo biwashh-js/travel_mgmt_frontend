@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import type { IRegisterData } from "../../interface/interface.auth";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { register as registerUser } from "../../api/auth.api";
 
 
 
@@ -23,7 +24,7 @@ const SignupForm = () => {
     defaultValues: {
       email:'',
       password:'',
-      confirm_password:'',
+       confirm_password:'',
       firstName:'',
       lastName:'',
       gender:'',
@@ -33,16 +34,15 @@ const SignupForm = () => {
     
   });
 
-  // const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   console.log(`input changes`, e.target.name, e.target.value)
-  //   const name = e.target.name
-  //   const value = e.target.value
-
-  //   setFormData({ ...formData, [name]: value})
-  // }
-
-  const onSubmit = (data: IRegisterData) => {
-    console.log("form Submitted", data);
+  const onSubmit = async(data: IRegisterData) => {
+     try{ 
+        console.log("form Submitted",data)
+        const response = await registerUser(data)
+        console.log('on submit response', response)
+         }
+         catch(error){
+          console.log(error)
+         }
   };
 
   return (
@@ -56,7 +56,7 @@ const SignupForm = () => {
               id="firstName"
               placeholder="Ram"
               type="text"
-              key="name_input"
+              key="firstName_input"
               name="firstName"
               register={register}
                error = {errors.firstName?.message}
@@ -68,7 +68,7 @@ const SignupForm = () => {
               id="LastName"
               placeholder="Karki"
               type="text"
-              key="name_input"
+              key="lastName_input"
               name="lastName"
               register={register}
                error = {errors.lastName?.message}
@@ -107,7 +107,7 @@ const SignupForm = () => {
             type="password"
             placeholder="********"
             key="confirm_password_input"
-            name="confrim_password"
+            name="confirm_password"
             register={register}
              error = {errors.confirm_password?.message}
             required

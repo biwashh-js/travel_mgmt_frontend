@@ -4,7 +4,7 @@ export interface ILoginData {
 }
 
 export interface IRegisterData{
-     email:string;
+    email:string;
     password:string;
     firstName:string;
     lastName:string;

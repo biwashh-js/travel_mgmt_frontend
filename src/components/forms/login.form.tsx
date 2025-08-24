@@ -6,6 +6,7 @@ import Input from "../common/inputs/input";
 import { useForm } from "react-hook-form";
 import * as yup from "yup"
 import axios from "axios";
+import { login } from "../../api/auth.api";
 
 
 const loginSchema = yup.object({
@@ -16,7 +17,6 @@ const loginSchema = yup.object({
 const LoginForm = () => {
 
 
-    
   const {register,handleSubmit,formState:{errors}} = useForm({
     defaultValues:{
       email:'',
@@ -27,7 +27,6 @@ const LoginForm = () => {
 
   })
  
-  console.log(errors)
 
   const onSubmit = async (data:ILoginData) => {
     try{ 
@@ -38,18 +37,6 @@ const LoginForm = () => {
      catch(error){
       console.log(error)
      }
- }
- 
- //api function send http request
-
- const login =async(data:ILoginData)=>{
-  try{
-    const response = await axios.post('https://travel-mgmt.onrender.com/api/auth/login',data)
-    return response.data
-  }
-  catch(error){
-    console.log(error)
-  }
  }
 
   return (
