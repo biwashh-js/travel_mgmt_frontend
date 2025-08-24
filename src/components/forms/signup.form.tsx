@@ -6,6 +6,8 @@ import type { IRegisterData } from "../../interface/interface.auth";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { register as registerUser } from "../../api/auth.api";
+import toast from "react-hot-toast";
+import { useMutation } from "@tanstack/react-query";
 
 
 
@@ -24,7 +26,7 @@ const SignupForm = () => {
     defaultValues: {
       email:'',
       password:'',
-       confirm_password:'',
+      confirm_password:'',
       firstName:'',
       lastName:'',
       gender:'',
@@ -34,15 +36,23 @@ const SignupForm = () => {
     
   });
 
-  const onSubmit = async(data: IRegisterData) => {
-     try{ 
-        console.log("form Submitted",data)
-        const response = await registerUser(data)
-        console.log('on submit response', response)
-         }
-         catch(error){
+    const {mutate,isPending} = useMutation({
+        mutationFn:registerUser,
+        mutationKey:['register'],
+        onSuccess:(response)=>{
+          console.log('on register success')
+          toast.success(response.message) ?? 'Registered Successfully'
+          console.log(response)
+        },
+        onError:(error)=>{
+          console.log('on login error')
+          toast.error(error.message) ?? 'Registration Failed'
           console.log(error)
-         }
+        }
+    })
+
+  const onSubmit = async(data:IRegisterData) => {
+        mutate(data)
   };
 
   return (
@@ -136,7 +146,7 @@ const SignupForm = () => {
           </div>
           {/* button */}
           <div className="flex flex-col items-center justify-center">
-            <Button type="submit" label="SignUp" variant="fill" />
+            <Button type="submit" label={isPending?"Signing Up" :"Sign Up"} variant="fill" />
           </div>
         </div>
       </form>

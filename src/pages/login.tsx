@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import LoginForm from "../components/forms/login.form";
+import ReactQueryProvider from "../providers/react-query.provider";
 
 const Login = () => {
   return (
@@ -8,6 +9,7 @@ const Login = () => {
         <h1 className="text-2xl font-bold text-blue-600 text-center ">Login</h1>
 
           {/* form */}
+         
           <LoginForm />
 
           
