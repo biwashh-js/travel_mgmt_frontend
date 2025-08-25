@@ -8,18 +8,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { register as registerUser } from "../../api/auth.api";
 import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
+import { signupSchema } from "../../schema/auth.schema";
 
 
-
-const signupSchema = yup.object({
-      email:yup.string().required('email is required.').email('invalid email format'),
-      password:yup.string().required('password is required.'),
-      confirm_password:yup.string().required('password is required'),
-      firstName: yup.string().required("First name is required"),
-      lastName: yup.string().required("Last name is required"),
-      gender: yup.string().required("Gender is required"),
-      phone: yup.string()
-})
 
 const SignupForm = () => {
   const { register, handleSubmit,formState:{errors} } = useForm({
@@ -51,7 +42,7 @@ const SignupForm = () => {
         }
     })
 
-  const onSubmit = async(data:IRegisterData) => {
+  const onSubmit =(data:IRegisterData) => {
         mutate(data)
   };
 
