@@ -26,6 +26,7 @@ const SignupForm = () => {
      resolver:yupResolver(signupSchema)
     
   });
+  console.log(errors)
 
     const {mutate,isPending} = useMutation({
         mutationFn:registerUser,
@@ -43,6 +44,7 @@ const SignupForm = () => {
     })
 
   const onSubmit =(data:IRegisterData) => {
+      console.log('onsubmit register')
         mutate(data)
   };
 

@@ -1,11 +1,12 @@
  
  //api function send http request
- import api from "."
+ import api from "./"
 
-import axios from "axios"
 import type { ILoginData, IRegisterData } from "../interface/interface.auth"
 
 export const login =async(data:ILoginData)=>{
+  console.log('api',api)
+
   try{
     const response = await api.post('/auth/login',data)
     return response.data
